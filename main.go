@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"os"
 )
 
@@ -16,7 +17,7 @@ func main() {
 	// Use a switch statement to perform actions based on the user's choice
 	switch selectedOption {
 	case 1:
-		fmt.Println("Monitoring....")
+		startMonitoring()
 	case 2:
 		fmt.Println("Displaying logs")
 	case 3:
@@ -26,6 +27,14 @@ func main() {
 	default:
 		fmt.Println("Selected option is invalid", selectedOption)
 	}
+}
+
+func showMenu() {
+	// Display a menu for the user to choose an option
+	fmt.Println("Choose an option:")
+	fmt.Println("1 - Start monitoring")
+	fmt.Println("2 - Display logs")
+	fmt.Println("3 - Exit")
 }
 
 func readInput() int {
@@ -41,10 +50,25 @@ func readInput() int {
 	return selectedOption
 }
 
-func showMenu() {
-	// Display a menu for the user to choose an option
-	fmt.Println("Choose an option:")
-	fmt.Println("1 - Start monitoring")
-	fmt.Println("2 - Display logs")
-	fmt.Println("3 - Exit")
+func startMonitoring() {
+	fmt.Println("Monitoring....")
+
+	urlSite := "https://www.google.com.br"
+
+	res, err := http.Get(urlSite)
+
+	if err != nil {
+		fmt.Println("Something went wrong...")
+		fmt.Println(err)
+		os.Exit(0)
+	}
+
+	statusCode := res.StatusCode
+
+	switch res.StatusCode {
+	case 200:
+		fmt.Println("Site", urlSite, "is online!")
+	default:
+		fmt.Println("Something went wrong! site:", urlSite, ". status code: ", statusCode)
+	}
 }
