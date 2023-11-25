@@ -20,4 +20,17 @@ func main() {
 
     // Print the selected option to the console
     fmt.Println("Selected option: ", selectedOption)
+
+    // Use a switch statement to perform actions based on the user's choice
+    switch selectedOption {
+    case 1:
+        fmt.Println("Monitoring....")
+    case 2:
+        fmt.Println("Displaying logs")
+    case 3:
+        // Exit the program for option 3
+        break
+    default:
+        fmt.Println("Selected option is invalid", selectedOption)
+    }
 }
