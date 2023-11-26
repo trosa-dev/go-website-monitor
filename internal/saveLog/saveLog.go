@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"time"
 )
 
 func Save(site string, status bool) int {
@@ -18,7 +19,7 @@ func Save(site string, status bool) int {
 		os.Exit(0)
 	}
 
-	file.WriteString(site + " status: " + strconv.FormatBool(status) + "\n")
+	file.WriteString(time.Now().Format("02/01/2006 15:04:05") + " - " + site + " status: " + strconv.FormatBool(status) + "\n")
 
 	file.Close()
 
