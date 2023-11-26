@@ -3,6 +3,7 @@ package startMonitoring
 import (
 	"fmt"
 	"time"
+	"website-monitor/internal/internal/readFile"
 	"website-monitor/internal/internal/testSite"
 )
 
@@ -12,7 +13,7 @@ const delay = 10
 func Start() {
 	fmt.Println("Monitoring....")
 
-	sitesUlr := []string{"https://www.google.com.br", "https://www.netflix.com"}
+	sitesUlr := readFile.Read()
 
 	for i := 0; i < monitoring; i++ {
 		for i, urlSite := range sitesUlr {
