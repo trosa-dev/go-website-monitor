@@ -3,8 +3,8 @@ package startMonitoring
 import (
 	"fmt"
 	"time"
-	"website-monitor/internal/internal/readFile"
-	"website-monitor/internal/internal/testSite"
+	"website-monitor/internal/readFile"
+	"website-monitor/internal/testSite"
 )
 
 const monitoring = 10

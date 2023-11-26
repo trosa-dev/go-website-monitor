@@ -1,3 +1,3 @@
-module website-monitor/internal
+module website-monitor
 
 go 1.21.4

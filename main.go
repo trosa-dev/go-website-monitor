@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"os"
-	"website-monitor/internal/internal/menu"
-	"website-monitor/internal/internal/readInput"
-	"website-monitor/internal/internal/startMonitoring"
+	"website-monitor/internal/menu"
+	"website-monitor/internal/readInput"
+	"website-monitor/internal/startMonitoring"
 )
 
 func main() {
