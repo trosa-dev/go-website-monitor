@@ -4,7 +4,11 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"time"
 )
+
+const monitoring = 10
+const delay = 10
 
 func main() {
 	// Print a message indicating the start of the application
@@ -13,6 +17,7 @@ func main() {
 	showMenu()
 
 	selectedOption := readInput()
+	fmt.Println("")
 
 	// Use a switch statement to perform actions based on the user's choice
 	switch selectedOption {
@@ -55,23 +60,31 @@ func startMonitoring() {
 
 	sitesUlr := []string{"https://www.google.com.br", "https://www.netflix.com"}
 
-	for _, urlSite := range sitesUlr {
-		res, err := http.Get(urlSite)
-
-		if err != nil {
-			fmt.Println("Something went wrong...")
-			fmt.Println(err)
-			os.Exit(0)
+	for i := 0; i < monitoring; i++ {
+		for i, urlSite := range sitesUlr {
+			fmt.Println("Testing site ", i+1)
+			testSite(urlSite)
 		}
+		time.Sleep(delay * time.Second)
+		fmt.Println("")
+	}
+}
 
-		statusCode := res.StatusCode
+func testSite(urlSite string) {
+	res, err := http.Get(urlSite)
 
-		switch res.StatusCode {
-		case 200:
-			fmt.Println("Site", urlSite, "is online!")
-		default:
-			fmt.Println("Something went wrong! site:", urlSite, ". status code: ", statusCode)
-		}
+	if err != nil {
+		fmt.Println("Something went wrong...")
+		fmt.Println(err)
+		os.Exit(0)
 	}
 
+	statusCode := res.StatusCode
+
+	switch res.StatusCode {
+	case 200:
+		fmt.Println("Site", urlSite, "is online!")
+	default:
+		fmt.Println("Something went wrong! site:", urlSite, ". status code: ", statusCode)
+	}
 }
