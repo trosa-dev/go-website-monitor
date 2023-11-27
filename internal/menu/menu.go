@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// ShowMenu displays a menu for the user to choose an option
 func ShowMenu() {
 	// Display a menu for the user to choose an option
 	fmt.Println("Choose an option:")
